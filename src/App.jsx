@@ -4,24 +4,21 @@ import GameScreen from './components/GameScreen'
 import ResultScreen from './components/ResultScreen'
 
 export default function App() {
-  const [screen, setScreen] = useState('start')
-  const [level, setLevel] = useState('easy')
+  const [screen, setScreen]       = useState('start')
+  const [level, setLevel]         = useState('easy')
+  const [playerName, setName]     = useState('')
+  const [totalQ, setTotalQ]       = useState(10)
   const [finalScore, setFinalScore] = useState(0)
   const [finalStars, setFinalStars] = useState(0)
 
-  const handleStart = (selectedLevel) => {
-    setLevel(selectedLevel)
+  const handleStart = ({ level, name, totalQ }) => {
+    setLevel(level); setName(name); setTotalQ(totalQ)
     setScreen('game')
   }
 
   const handleGameEnd = (score, stars) => {
-    setFinalScore(score)
-    setFinalStars(stars)
+    setFinalScore(score); setFinalStars(stars)
     setScreen('result')
-  }
-
-  const handleRestart = () => {
-    setScreen('start')
   }
 
   return (
@@ -33,10 +30,23 @@ export default function App() {
       </div>
       {screen === 'start' && <StartScreen onStart={handleStart} />}
       {screen === 'game' && (
-        <GameScreen key={level} level={level} onEnd={handleGameEnd} onExit={() => setScreen('start')} />
+        <GameScreen
+          key={`${level}-${totalQ}`}
+          level={level}
+          name={playerName}
+          totalQ={totalQ}
+          onEnd={handleGameEnd}
+          onExit={() => setScreen('start')}
+        />
       )}
       {screen === 'result' && (
-        <ResultScreen score={finalScore} stars={finalStars} onRestart={handleRestart} />
+        <ResultScreen
+          score={finalScore}
+          stars={finalStars}
+          total={totalQ}
+          name={playerName}
+          onRestart={() => setScreen('start')}
+        />
       )}
     </div>
   )

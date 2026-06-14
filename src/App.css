@@ -84,7 +84,7 @@ body {
 }
 
 .mascot-intro {
-  font-size: 88px;
+  font-size: 72px;
   display: block;
   margin-bottom: 12px;
   animation: mascot-idle 2s ease-in-out infinite;
@@ -103,6 +103,60 @@ body {
   font-size: 17px;
   color: #636e72;
   margin-bottom: 32px;
+}
+
+/* Name input */
+.name-input {
+  width: 100%;
+  padding: 11px 16px;
+  border: 2px solid #e0d8ff;
+  border-radius: 16px;
+  font-size: 16px;
+  font-family: 'Nunito', cursive;
+  font-weight: 700;
+  color: #2d3436;
+  background: #f8f6ff;
+  outline: none;
+  margin-bottom: 12px;
+  text-align: center;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.name-input:focus {
+  border-color: #6c5ce7;
+  box-shadow: 0 0 0 3px rgba(108,92,231,0.15);
+}
+.name-input::placeholder { color: #b2bec3; font-weight: 400; }
+
+/* Question count */
+.qcount-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+.qcount-label {
+  font-size: 15px;
+  font-weight: 700;
+  color: #636e72;
+}
+.qcount-btn {
+  padding: 6px 18px;
+  border: 2px solid #e0d8ff;
+  border-radius: 12px;
+  font-size: 15px;
+  font-weight: 800;
+  font-family: 'Nunito', cursive;
+  background: #f8f6ff;
+  color: #6c5ce7;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.qcount-btn:hover:not(.active) { border-color: #a29bfe; }
+.qcount-btn.active {
+  background: #6c5ce7;
+  border-color: #6c5ce7;
+  color: #fff;
 }
 
 .levels-grid {
@@ -387,6 +441,61 @@ body {
 .submit-btn:hover:not(:disabled)  { transform: translateY(-3px); box-shadow: 0 9px 24px rgba(108,92,231,0.5); }
 .submit-btn:active:not(:disabled) { transform: translateY(1px); }
 .submit-btn:disabled { opacity: 0.65; cursor: default; }
+
+/* ── KEYPAD ── */
+.keypad {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-top: 12px;
+  width: 100%;
+  max-width: 260px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.keypad-btn {
+  height: 62px;
+  font-size: 26px;
+  font-weight: 800;
+  font-family: 'Nunito', cursive;
+  border: none;
+  border-radius: 16px;
+  background: #f0eeff;
+  color: #2d3436;
+  cursor: pointer;
+  transition: transform 0.1s, background 0.1s;
+  box-shadow: 0 3px 0 #d4ccf5;
+}
+.keypad-btn:hover:not(:disabled)  { background: #e0d8ff; }
+.keypad-btn:active:not(:disabled) { transform: translateY(3px); box-shadow: none; }
+.keypad-btn:disabled { opacity: 0.4; cursor: default; }
+
+.keypad-btn.kp-del {
+  background: #ffe8f0;
+  color: #e84393;
+  box-shadow: 0 3px 0 #f5c0d6;
+  font-size: 22px;
+}
+.keypad-btn.kp-del:hover:not(:disabled) { background: #ffd0e4; }
+
+.keypad-btn.kp-ok {
+  background: linear-gradient(135deg, #6c5ce7, #a29bfe);
+  color: #fff;
+  box-shadow: 0 3px 0 #5548c8;
+  font-size: 24px;
+}
+.keypad-btn.kp-ok:hover:not(:disabled)  { filter: brightness(1.08); }
+.keypad-btn.kp-ok:active:not(:disabled) { transform: translateY(3px); box-shadow: none; }
+
+/* Answer reveal in formula */
+.problem-ans-reveal {
+  font-size: clamp(48px, 13vw, 76px);
+  font-weight: 900;
+  color: #e84393;
+  line-height: 1;
+  animation: pop-in 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
 
 /* ── RESULT SCREEN ── */
 .result-screen {
