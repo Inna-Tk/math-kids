@@ -39,7 +39,7 @@ function beep(type) {
   } catch (_) {}
 }
 
-export default function GameScreen({ level, onEnd }) {
+export default function GameScreen({ level, onEnd, onExit }) {
   const [problem, setProblem]   = useState(() => mkProblem(level))
   const [input, setInput]       = useState('')
   const [score, setScore]       = useState(0)
@@ -115,6 +115,8 @@ export default function GameScreen({ level, onEnd }) {
 
       {/* Header */}
       <div className="game-header">
+        <button className="home-btn" onClick={onExit} title="В меню">🏠</button>
+
         <div className="score-display">
           <span className="score-icon">⭐</span>
           <span className="score-value">{score}</span>

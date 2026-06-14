@@ -33,7 +33,7 @@ export default function App() {
       </div>
       {screen === 'start' && <StartScreen onStart={handleStart} />}
       {screen === 'game' && (
-        <GameScreen key={level} level={level} onEnd={handleGameEnd} />
+        <GameScreen key={level} level={level} onEnd={handleGameEnd} onExit={() => setScreen('start')} />
       )}
       {screen === 'result' && (
         <ResultScreen score={finalScore} stars={finalStars} onRestart={handleRestart} />
